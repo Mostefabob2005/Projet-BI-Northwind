@@ -1,0 +1,118 @@
+# ============ PYTHON ============
+# Environnements virtuels
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+pyvenv.cfg
+
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ============ DONNÉES SENSIBLES ============
+# Dossier data/ complet (à garder local)
+data/
+!data/README.md  # On garde seulement ce fichier
+
+# Fichiers de configuration sensibles
+config/config.py
+config/__pycache__/
+
+# Clés, mots de passe, tokens
+*.key
+*.pem
+*.crt
+*.secret
+.env
+.env.local
+.env.*.local
+
+# ============ BASE DE DONNÉES ============
+*.mdf
+*.ldf
+*.bak
+*.sqlite
+*.db
+*.log
+
+# ============ SYSTÈME ============
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+desktop.ini
+*.lnk
+
+# Linux
+*~
+
+# ============ IDE ============
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Autres éditeurs
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# ============ JOURNALISATION ============
+*.log
+logs/
+
+# ============ DIVERS ============
+# Fichiers temporaires
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Fichiers exportés
+export/
+backup/
+
+# Documentation générée
+docs/_build/

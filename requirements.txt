@@ -1,0 +1,9 @@
+# Requirements pour le projet BI
+pandas>=1.5.0
+pyodbc>=5.0.0
+sqlalchemy>=2.0.0
+dash>=2.14.0
+plotly>=5.17.0
+dash-bootstrap-components>=1.4.0
+openpyxl>=3.1.0
+python-dotenv>=1.0.0

@@ -9,8 +9,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Ajouter le chemin racine pour pouvoir importer config
 sys.path.insert(0, PROJECT_ROOT)
 
-print(f"🔍 Chemin du projet: {PROJECT_ROOT}")
-print(f"📁 Emplacement dashboard: {os.path.dirname(os.path.abspath(__file__))}")
+print(f" Chemin du projet: {PROJECT_ROOT}")
+print(f" Emplacement dashboard: {os.path.dirname(os.path.abspath(__file__))}")
 
 # Maintenant on peut importer depuis le dossier config
 try:
@@ -45,7 +45,7 @@ except ImportError as e:
                 sys.exit(1)
         except Exception as e3:
             print(f"❌ Échec final: {e3}")
-            print("📁 Structure des dossiers:")
+            print(" Structure des dossiers:")
             for root, dirs, files in os.walk(PROJECT_ROOT):
                 level = root.replace(PROJECT_ROOT, '').count(os.sep)
                 indent = ' ' * 2 * level
@@ -101,7 +101,7 @@ try:
             print(f"   ✗ {table}: Non disponible")
             
 except Exception as e:
-    print(f"❌ Erreur de connexion: {e}")
+    print(f" Erreur de connexion: {e}")
     # Créer un dataframe de test pour le développement
     print("⚠️ Utilisation de données de test pour le développement")
     df = pd.DataFrame({
@@ -120,8 +120,8 @@ except Exception as e:
     # Dashboard avec données de test
     app = dash.Dash(__name__)
     app.layout = html.Div([
-        html.H1("📊 Dashboard Northwind - Mode Démo"),
-        html.H3("⚠️ Données de test - Exécutez main_etl.py d'abord"),
+        html.H1(" Dashboard Northwind - Mode Démo"),
+        html.H3(" Données de test - Exécutez main_etl.py d'abord"),
         html.P("Les tables DWH ne sont pas encore créées."),
         html.P("Exécutez 'python main_etl.py' pour créer la base de données."),
         dcc.Graph(
@@ -131,9 +131,9 @@ except Exception as e:
     ])
     
     if __name__ == '__main__':
-        print("\n🚀 Lancement du dashboard en mode démo...")
-        print("🌐 Ouvrez http://localhost:8050 dans votre navigateur")
-        print("💡 Conseil: Exécutez d'abord main_etl.py pour avoir les vraies données")
+        print("\n Lancement du dashboard en mode démo...")
+        print(" Ouvrez http://localhost:8050 dans votre navigateur")
+        print(" Conseil: Exécutez d'abord main_etl.py pour avoir les vraies données")
         app.run_server(debug=True, port=8050)
     sys.exit(0)
 
@@ -188,21 +188,21 @@ ORDER BY ChiffreAffaires DESC
 
 # Charger les données
 try:
-    print("\n📥 Chargement des données depuis DWH_Northwind...")
+    print("\n Chargement des données depuis DWH_Northwind...")
     df = pd.read_sql(query, engine)
     
     if len(df) == 0:
-        print("⚠️ Aucune donnée avec la première requête, essai alternative...")
+        print(" Aucune donnée avec la première requête, essai alternative...")
         df = pd.read_sql(query_alternative, engine)
     
-    print(f"✅ Données chargées: {len(df)} lignes")
+    print(f" Données chargées: {len(df)} lignes")
     
     # Afficher un aperçu
-    print(f"\n📊 Aperçu des données (5 premières lignes):")
+    print(f"\n Aperçu des données (5 premières lignes):")
     print(df.head())
     
     # Statistiques basiques
-    print(f"\n📈 Statistiques:")
+    print(f"\n Statistiques:")
     print(f"   - Période: {df['Annee'].min() if 'Annee' in df.columns else 'N/A'} - {df['Annee'].max() if 'Annee' in df.columns else 'N/A'}")
     print(f"   - Nombre de clients: {df['Client'].nunique()}")
     print(f"   - Nombre de produits: {df['Produit'].nunique()}")
@@ -263,7 +263,7 @@ top_pays = df.groupby('Pays')['ChiffreAffaires'].sum().idxmax()
 app.layout = html.Div(style=styles['container'], children=[
     # En-tête
     html.Div(style=styles['header'], children=[
-        html.H1("📊 Dashboard Northwind - Business Intelligence"),
+        html.H1(" Dashboard Northwind - Business Intelligence"),
         html.P("Analyse des ventes et performance commerciale"),
         html.P(f"Dernière mise à jour: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
     ]),
@@ -293,7 +293,7 @@ app.layout = html.Div(style=styles['container'], children=[
         # Graphique 1: CA annuel
         html.Div(style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top'}, children=[
             html.Div(style=styles['card'], children=[
-                html.H4("📈 Chiffre d'affaires annuel"),
+                html.H4(" Chiffre d'affaires annuel"),
                 dcc.Graph(
                     id='ca-annuel',
                     figure=px.bar(
@@ -312,7 +312,7 @@ app.layout = html.Div(style=styles['container'], children=[
         # Graphique 2: Top clients
         html.Div(style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top', 'marginLeft': '4%'}, children=[
             html.Div(style=styles['card'], children=[
-                html.H4("👥 Top 10 clients"),
+                html.H4(" Top 10 clients"),
                 dcc.Graph(
                     id='top-clients',
                     figure=px.pie(
@@ -334,7 +334,7 @@ app.layout = html.Div(style=styles['container'], children=[
         # Graphique 3: Ventes par catégorie
         html.Div(style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top'}, children=[
             html.Div(style=styles['card'], children=[
-                html.H4("📦 Ventes par catégorie"),
+                html.H4(" Ventes par catégorie"),
                 dcc.Graph(
                     id='ventes-par-categorie',
                     figure=px.bar(
@@ -354,7 +354,7 @@ app.layout = html.Div(style=styles['container'], children=[
         # Graphique 4: Répartition géographique
         html.Div(style={'width': '48%', 'display': 'inline-block', 'verticalAlign': 'top', 'marginLeft': '4%'}, children=[
             html.Div(style=styles['card'], children=[
-                html.H4("🌍 Répartition géographique"),
+                html.H4(" Répartition géographique"),
                 dcc.Graph(
                     id='ventes-par-pays',
                     figure=px.treemap(
@@ -372,7 +372,7 @@ app.layout = html.Div(style=styles['container'], children=[
     
     # Tableau de données (optionnel)
     html.Div(style=styles['card'], children=[
-        html.H4("📋 Aperçu des données"),
+        html.H4(" Aperçu des données"),
         html.Div([
             html.P(f"Affichage de {min(10, len(df))} lignes sur {len(df)} totales"),
             html.Table(
@@ -397,18 +397,18 @@ app.layout = html.Div(style=styles['container'], children=[
 # ==================== LANCEMENT ====================
 if __name__ == '__main__':
     print("\n" + "="*60)
-    print("🚀 LANCEMENT DU DASHBOARD NORTHWIND BI")
+    print(" LANCEMENT DU DASHBOARD NORTHWIND BI")
     print("="*60)
-    print(f"📊 Données chargées: {len(df)} lignes")
-    print(f"💰 Chiffre d'affaires total: {total_ca:,.2f} €")
-    print(f"📦 Nombre de produits: {df['Produit'].nunique()}")
-    print(f"👥 Nombre de clients: {df['Client'].nunique()}")
+    print(f" Données chargées: {len(df)} lignes")
+    print(f" Chiffre d'affaires total: {total_ca:,.2f} €")
+    print(f" Nombre de produits: {df['Produit'].nunique()}")
+    print(f" Nombre de clients: {df['Client'].nunique()}")
     
     # Déterminer le port
     port = 8050
-    print(f"🌐 Tentative de lancement sur le port {port}...")
+    print(f" Tentative de lancement sur le port {port}...")
     print("="*60)
-    print("💡 Appuyez sur Ctrl+C pour arrêter le serveur")
+    print(" Appuyez sur Ctrl+C pour arrêter le serveur")
     print("="*60)
     
     # Lancer le serveur avec gestion des erreurs de port
@@ -417,7 +417,7 @@ if __name__ == '__main__':
         app.run(debug=True, port=port, host='127.0.0.1')
     except OSError as e:
         if "Address already in use" in str(e):
-            print(f"⚠️ Le port {port} est occupé, tentative sur le port {port+1}...")
+            print(f" Le port {port} est occupé, tentative sur le port {port+1}...")
             app.run(debug=True, port=port+1, host='127.0.0.1')
         else:
             raise e

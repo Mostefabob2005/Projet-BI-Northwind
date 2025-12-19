@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 class NorthwindETL:
     def __init__(self):
         print("=" * 60)
-        print("🚀 ETL NORTHWIND - BUSINESS INTELLIGENCE")
+        print(" ETL NORTHWIND - BUSINESS INTELLIGENCE")
         print("=" * 60)
         
         # Connexions
@@ -39,7 +39,7 @@ class NorthwindETL:
     # DIMENSION : CLIENTS
     # ====================
     def etl_dim_client(self):
-        print("\n📊 ETL Dim_Client...")
+        print("\n ETL Dim_Client...")
         
         # EXTRACT
         query = """
@@ -57,12 +57,12 @@ class NorthwindETL:
         df['SourceSystem'] = 'Python_ETL'
         
         # LOAD avec pyodbc direct (solution fiable)
-        print("  📤 Chargement via pyodbc direct...")
+        print("   Chargement via pyodbc direct...")
         
         cursor = self.conn_dwh_pyodbc.cursor()
         
         try:
-            print("  🔧 Vérification des contraintes FOREIGN KEY...")
+            print("   Vérification des contraintes FOREIGN KEY...")
             find_fk_sql = """
             SELECT 
                 fk.name AS ForeignKeyName,
@@ -145,13 +145,13 @@ class NorthwindETL:
             cursor.close()
         
         self.stats['rows_loaded']['Dim_Client'] = len(df)
-        print(f"  ✅ {len(df)} clients chargés")
+        print(f"   {len(df)} clients chargés")
     
     # ====================
     # DIMENSION : PRODUITS
     # ====================
     def etl_dim_produit(self):
-        print("\n📦 ETL Dim_Produit...")
+        print("\n ETL Dim_Produit...")
         
         query = """
         SELECT 
@@ -185,13 +185,13 @@ class NorthwindETL:
         df['SourceSystem'] = 'Python_ETL_v1.0'
         
         # LOAD avec pyodbc direct
-        print("  📤 Chargement via pyodbc direct...")
+        print("   Chargement via pyodbc direct...")
         
         cursor = self.conn_dwh_pyodbc.cursor()
         
         try:
             # ===== GESTION DES FOREIGN KEY =====
-            print("  🔧 Vérification des contraintes FOREIGN KEY...")
+            print("   Vérification des contraintes FOREIGN KEY...")
             
             # Chercher toutes les contraintes FOREIGN KEY qui référencent Dim_Produit
             find_fk_sql = """
@@ -282,13 +282,13 @@ class NorthwindETL:
             cursor.close()
         
         self.stats['rows_loaded']['Dim_Produit'] = len(df)
-        print(f"  ✅ {len(df)} produits chargés")
+        print(f"   {len(df)} produits chargés")
     
     # ====================
     # DIMENSION : EMPLOYÉS
     # ====================
     def etl_dim_employe(self):
-        print("\n👥 ETL Dim_Employe...")
+        print("\n ETL Dim_Employe...")
         
         query = """
         SELECT 
@@ -323,13 +323,13 @@ class NorthwindETL:
         df['SourceSystem'] = 'Python_ETL_v1.0'
         
         # LOAD avec pyodbc direct
-        print("  📤 Chargement via pyodbc direct...")
+        print("   Chargement via pyodbc direct...")
         
         cursor = self.conn_dwh_pyodbc.cursor()
         
         try:
             # ===== GESTION DES FOREIGN KEY =====
-            print("  🔧 Vérification des contraintes FOREIGN KEY...")
+            print("   Vérification des contraintes FOREIGN KEY...")
             
             # Chercher toutes les contraintes FOREIGN KEY qui référencent Dim_Employe
             find_fk_sql = """
@@ -419,13 +419,13 @@ class NorthwindETL:
             cursor.close()
         
         self.stats['rows_loaded']['Dim_Employe'] = len(df)
-        print(f"  ✅ {len(df)} employés chargés")
+        print(f"   {len(df)} employés chargés")
     
     # ====================
     # DIMENSION : TRANSPORTEURS
     # ====================
     def etl_dim_transporteur(self):
-        print("\n🚚 ETL Dim_Transporteur...")
+        print("\n ETL Dim_Transporteur...")
         
         query = """
         SELECT 
@@ -443,13 +443,13 @@ class NorthwindETL:
         df['SourceSystem'] = 'Python_ETL_v1.0'
         
         # LOAD avec pyodbc direct
-        print("  📤 Chargement via pyodbc direct...")
+        print("   Chargement via pyodbc direct...")
         
         cursor = self.conn_dwh_pyodbc.cursor()
         
         try:
             # ===== GESTION DES FOREIGN KEY =====
-            print("  🔧 Vérification des contraintes FOREIGN KEY...")
+            print("   Vérification des contraintes FOREIGN KEY...")
             
             # Chercher toutes les contraintes FOREIGN KEY qui référencent Dim_Transporteur
             find_fk_sql = """
@@ -520,13 +520,13 @@ class NorthwindETL:
             cursor.close()
         
         self.stats['rows_loaded']['Dim_Transporteur'] = len(df)
-        print(f"  ✅ {len(df)} transporteurs chargés")
+        print(f"   {len(df)} transporteurs chargés")
     
     # ====================
     # TABLE DE FAITS : VENTES
     # ====================
     def etl_fact_ventes(self):
-        print("\n💰 ETL Fact_Ventes...")
+        print("\n ETL Fact_Ventes...")
         
         query = """
         SELECT 
@@ -582,7 +582,7 @@ class NorthwindETL:
         df['SourceSystem'] = 'Python_ETL_v1.0'
         
         # ========== CHARGEMENT ==========
-        print("  📤 Chargement via pyodbc direct...")
+        print("   Chargement via pyodbc direct...")
         
         cursor = self.conn_dwh_pyodbc.cursor()
         
@@ -655,7 +655,7 @@ class NorthwindETL:
             cursor.close()
         
         self.stats['rows_loaded']['Fact_Ventes'] = total_rows
-        print(f"  ✅ {total_rows} ventes chargées")
+        print(f"   {total_rows} ventes chargées")
     
     # ====================
     # EXÉCUTION COMPLÈTE
@@ -663,7 +663,7 @@ class NorthwindETL:
     def run_complete_etl(self):
         try:
             print("\n" + "=" * 60)
-            print("🔄 DÉMARRAGE DE L'ETL COMPLET")
+            print(" DÉMARRAGE DE L'ETL COMPLET")
             print("=" * 60)
             
             # Ordre IMPORTANT : dimensions d'abord !
@@ -689,21 +689,21 @@ class NorthwindETL:
     
     def print_statistics(self):
         print("\n" + "=" * 60)
-        print("📈 STATISTIQUES DE L'ETL")
+        print(" STATISTIQUES DE L'ETL")
         print("=" * 60)
         
         total_time = (datetime.now() - self.stats['start_time']).total_seconds()
         
-        print(f"⏱️  Temps total : {total_time:.2f} secondes")
-        print(f"📊 Tables chargées :")
+        print(f"  Temps total : {total_time:.2f} secondes")
+        print(f" Tables chargées :")
         
         for table, rows in self.stats['rows_loaded'].items():
             print(f"   • {table} : {rows:,} lignes")
         
         total_rows = sum(self.stats['rows_loaded'].values())
-        print(f"\n📦 TOTAL : {total_rows:,} lignes chargées")
+        print(f"\n TOTAL : {total_rows:,} lignes chargées")
         print("=" * 60)
-        print("✅ ETL TERMINÉ AVEC SUCCÈS !")
+        print(" ETL TERMINÉ AVEC SUCCÈS !")
         print("=" * 60)
 
 # ====================
